@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Build / cache
+.next/
+out/
+dist/
+*.tsbuildinfo
+
+# IDE / OS
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Optional: keep backend for local dev
+# backend/node_modules/
