@@ -45,13 +45,13 @@ git push -u origin main
 ## 2. Deploy on Vercel
 
 1. Go to [vercel.com](https://vercel.com) and sign in (use your GitHub account).
-2. **Add New Project** → **Import** the repo `MDS2025-dev/truthlens-ai`.
-3. **Root Directory:** set to `frontend` (so Vercel builds the Next.js app).
-4. **Environment Variables:** add:
-   - Name: `GROQ_API_KEY`  
-   - Value: your [Groq API key](https://console.groq.com/)  
-   (Do **not** add `NEXT_PUBLIC_API_URL`; the app will use the built-in `/api/analyze` route.)
-5. Deploy. The app will be live at `https://your-project.vercel.app`.
+2. **Add New** → **Project** → **Import** the repo `MDS2025-dev/truthlens-ai`.
+3. **Leave Root Directory as `.`** (the Next.js app is at the repo root — no need to select a subfolder).
+4. **Environment Variables** → add:
+   - **Name:** `GROQ_API_KEY`  
+   - **Value:** your [Groq API key](https://console.groq.com/)  
+   (Do **not** add `NEXT_PUBLIC_API_URL`; the app uses the built-in `/api/analyze` route.)
+5. Click **Deploy**. The app will be live at `https://your-project.vercel.app`.
 
 After deploy, analysis runs on Vercel serverless functions; no separate backend server is required.
 
@@ -60,8 +60,8 @@ After deploy, analysis runs on Vercel serverless functions; no separate backend 
 ## 3. Run locally (Vercel-style: single app)
 
 ```bash
-cd frontend
-cp .env.example .env.local
+cd c:\Hackathon\truthlens-ai
+copy .env.example .env.local
 # Edit .env.local and set GROQ_API_KEY=your_key
 pnpm install
 pnpm dev
@@ -82,9 +82,9 @@ npm install
 echo "GROQ_API_KEY=your_key" > .env
 node server.js
 
-# Terminal 2 – frontend
-cd frontend
-echo "NEXT_PUBLIC_API_URL=http://localhost:5000" >> .env.local
+# Terminal 2 – from repo root
+cd c:\Hackathon\truthlens-ai
+echo NEXT_PUBLIC_API_URL=http://localhost:5000 >> .env.local
 pnpm install
 pnpm dev
 ```
@@ -103,13 +103,13 @@ pnpm dev
 
 ```
 truthlens-ai/
-├── frontend/          ← Vercel deploys this (Root Directory: frontend)
-│   ├── app/
-│   │   ├── api/analyze/route.ts   ← Serverless analyze API
-│   │   ├── page.tsx
-│   │   └── ...
-│   ├── .env.example
-│   └── package.json
+├── app/               ← Next.js App Router (Vercel builds from repo root)
+│   ├── api/analyze/route.ts   ← Serverless analyze API
+│   ├── page.tsx
+│   └── ...
+├── components/
+├── package.json
+├── .env.example
 ├── backend/           ← Optional; for local Express server
 │   └── server.js
 ├── .gitignore

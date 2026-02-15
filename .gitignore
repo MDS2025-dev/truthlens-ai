@@ -1,6 +1,11 @@
 # Dependencies
 node_modules/
 
+# v0 / Next runtime (preview only)
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+
 # Environment (never commit secrets)
 .env
 .env.local
